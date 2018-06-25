@@ -3,7 +3,9 @@ import CodeSlide from "spectacle-code-slide";
 import { Deck, Heading, ListItem, List, Slide, Text } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
 
+import Comparison from "./comparison";
 import ledBlinkExample from "../assets/led-blink-example.gif";
+import unoPinout from "../assets/uno-pinout.png";
 
 require("normalize.css");
 require("../assets/monokai.css");
@@ -42,36 +44,72 @@ export default class Presentation extends React.Component {
             Single-Board Microcontrollers
           </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            Arduino, Raspberry Pi, and more
+            Introduction to the Arduino Platform
           </Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <div>
-            <Heading size={5} textColor="secondary" caps>
-              What we're focusing on
-            </Heading>
-            <List>
-              <ListItem>Arduino Platform & compatible clones</ListItem>
-              <ListItem>Arduino IDE</ListItem>
-              <ListItem>Pin Types</ListItem>
-              <ListItem>Basic "Hello World" projects</ListItem>
-              <ListItem>Using libraries to make life easy</ListItem>
-            </List>
-            <Heading size={5} textColor="secondary" caps>
-              What we're <i>not</i> focusing on
-            </Heading>
-            <List>
-              <ListItem>C++/The Arduino Language</ListItem>
-              <ListItem>Linux (Rasbian)</ListItem>
-              <ListItem>Soldering</ListItem>
-            </List>
-          </div>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={5} textColor="secondary" caps>
-            Anatomy of an Arduino Board
+        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            Quick comparison
           </Heading>
-          {/* TODO <img src={} /> */}
+          <Comparison leftHeading="Raspberry Pi" rightHeading="Arduino">
+            <List>
+              <ListItem>
+                Linux, Android, or Windows 10 operating system
+              </ListItem>
+              <ListItem>Any language</ListItem>
+              <ListItem>5v logic only</ListItem>
+              <ListItem>Digital only</ListItem>
+            </List>
+            <List>
+              <ListItem>Compiled C++ firmware</ListItem>
+              <ListItem>5v and 3.3v variants</ListItem>
+              <ListItem>Digital & Analog (for input only)</ListItem>
+            </List>
+          </Comparison>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="secondary">
+          <Heading size={5} textColor="primary" caps>
+            Arduino UNO R3 Pinout
+          </Heading>
+          <img src={unoPinout} style={{ maxHeight: "600px" }} />
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={3} textColor="secondary" caps>
+            Digital
+          </Heading>
+          <List>
+            <ListItem textColor="tertiary">
+              On state (pin voltage set to HIGH)
+            </ListItem>
+            <ListItem textColor="tertiary">
+              Off state (pin voltage set to LOW)
+            </ListItem>
+          </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={3} textColor="secondary" caps>
+            Analog
+          </Heading>
+          <ListItem textColor="tertiary">
+            Not limited to binary signals (HIGH or LOW) like Digital
+          </ListItem>
+          <ListItem textColor="tertiary">
+            analogRead() converts analog inputs to digital readings (0 to 1023)
+          </ListItem>
+          <ListItem textColor="tertiary">
+            analogWrite() outputs PWM signals!
+          </ListItem>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={3} textColor="secondary" caps>
+            PWM
+          </Heading>
+          <Heading size={6} textColor="secondary" caps>
+            (Pulse-Width Modulation)
+          </Heading>
+          <Text textColor="tertiary">
+            A digital signal that can simulate an analog signal
+          </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="secondary">
           <Heading size={5} textColor="primary" caps>

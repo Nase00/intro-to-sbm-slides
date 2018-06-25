@@ -27,3 +27,7 @@ h1 > div.code-title {
   width: 950px;
   border: 10px solid magenta;
 }
+
+li {
+  text-align: left;
+}
