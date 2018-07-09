@@ -10,4 +10,3 @@ void loop() {
   digitalWrite(LED_PIN, LOW); // Turn LED off
   delay(1000);
 }
-

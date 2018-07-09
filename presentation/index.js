@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import CodeSlide from "spectacle-code-slide";
 import { Deck, Heading, ListItem, List, Slide, Text } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
@@ -7,9 +7,9 @@ import Comparison from "./comparison";
 import ledBlinkExample from "../assets/led-blink-example.gif";
 import unoPinout from "../assets/uno-pinout.png";
 
-require("normalize.css");
-require("../assets/monokai.css");
-require("./styles.css");
+import "normalize.css";
+import "../assets/monokai.css";
+import "./styles.css";
 
 const theme = createTheme(
   {
@@ -29,9 +29,10 @@ const theme = createTheme(
  * - Pin types (input, output, PWM, i2c)
  * - Arduino IDE
  * - Serial monitor
+ * - Hardware vs software solutions (pull-up resistors)
  */
 
-export default class Presentation extends React.Component {
+class Presentation extends PureComponent {
   render() {
     return (
       <Deck
@@ -195,7 +196,10 @@ export default class Presentation extends React.Component {
           </Heading>
           <List>
             <ListItem>
-              <a href="https://smile.amazon.com">Amazon</a>
+              <a href="https://www.arrow.com/">Arrow</a>
+            </ListItem>
+            <ListItem>
+              <a href="https://www.digikey.com/">Digi-Key</a>
             </ListItem>
             <ListItem>
               <a href="https://www.adafruit.com/">Adafruit</a>
@@ -231,6 +235,9 @@ export default class Presentation extends React.Component {
               </a>
             </ListItem>
             <ListItem>
+              <a href="http://fritzing.org/home/">Fritzing Software</a>
+            </ListItem>
+            <ListItem>
               <a href="https://learn.adafruit.com/">Adafruit Tutorials</a>
             </ListItem>
             <ListItem>
@@ -244,3 +251,5 @@ export default class Presentation extends React.Component {
     );
   }
 }
+
+export default Presentation;

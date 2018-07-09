@@ -29,13 +29,12 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /(\.scss|\.css)$/,
+        test: /(\.css)$/,
         use: [
           "style-loader",
           {
             loader: "css-loader",
             options: {
-              modules: true,
               sourceMap: true,
               importLoaders: 1
             }
