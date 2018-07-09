@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --config webpack.config.production.js",
+    "cp:static": "mkdir dist && cp ./index.html ./dist/index.html && cp -R ./assets ./dist",
+    "build": "npm run clean && npm run cp:static && NODE_ENV=production webpack --config webpack.config.prod.js",
     "lint": "eslint --ext .js,.jsx .",
-    "deploy": "cp ./index.html ./dist/index.html && git subtree push --prefix dist origin gh-pages",
+    "deploy": "git subtree push --prefix dist origin gh-pages",
     "export": "spectacle-renderer --delay 3000",
     "start": "cross-env NODE_ENV=development node server.js"
   },
