@@ -1,62 +1,65 @@
-/* eslint-disable */
+/* globals __dirname */
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
-var path = require("path");
-var webpack = require("webpack");
+const baseContext = path.join(__dirname, "./");
 
 module.exports = {
-  devtool: "cheap-module-source-map",
-  entry: [
-    "babel-polyfill",
-    "webpack-hot-middleware/client",
-    "react-hot-loader/patch",
-    "./index"
-  ],
+  context: baseContext,
+  entry: ["babel-polyfill", "./index"],
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "bundle.js",
-    publicPath: "/dist"
+    publicPath: "/",
+    libraryTarget: "umd"
+  },
+  resolve: {
+    modules: [baseContext, "node_modules"],
+    extensions: [".js", ".jsx", ".css"]
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js(x|)?$/,
+        use: {
+          loader: "babel-loader"
+        },
+        include: baseContext,
+        exclude: /node_modules/
+      },
+      {
+        test: /(\.scss|\.css)$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(svg|png|gif)$/,
+        use: {
+          loader: "file-loader"
+        },
+        include: [baseContext],
+        exclude: /node_modules/
+      }
+    ]
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.md$/,
-        loader: "html-loader!markdown-loader?gfm=false"
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        include: __dirname
-      },
-      {
-        test: /\.css$/,
-        loaders: ["style-loader", "raw-loader"],
-        include: __dirname
-      },
-      {
-        test: /\.svg$/,
-        loader: "url-loader?limit=10000&mimetype=image/svg+xml",
-        include: path.join(__dirname, "assets")
-      },
-      {
-        test: /\.png$/,
-        loader: "url-loader?mimetype=image/png",
-        include: path.join(__dirname, "assets")
-      },
-      {
-        test: /\.gif$/,
-        loader: "url-loader?mimetype=image/gif",
-        include: path.join(__dirname, "assets")
-      },
-      {
-        test: /\.jpg$/,
-        loader: "url-loader?mimetype=image/jpg",
-        include: path.join(__dirname, "assets")
-      }
-    ]
-  }
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./index.html"
+    })
+  ]
 };

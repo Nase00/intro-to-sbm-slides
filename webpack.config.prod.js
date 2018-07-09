@@ -1,16 +1,19 @@
 /* eslint-disable */
 
-var path = require("path");
-var webpack = require("webpack");
+const path = require("path");
+const webpack = require("webpack");
+
+const base = require("./webpack.config.js");
 
 module.exports = {
-  entry: ["babel-polyfill", "./index"],
+  context: base.context,
+  entry: base.entry,
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "./dist/"
   },
-  plugins: [
+  plugins: base.plugins.concat([
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
@@ -21,30 +24,6 @@ module.exports = {
         warnings: false
       }
     })
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.md$/,
-        loader: "html-loader!markdown-loader?gfm=false"
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
-      },
-      {
-        test: /\.css$/,
-        loader: "style-loader!css-loader"
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        loader: "url-loader?limit=8192"
-      },
-      {
-        test: /\.svg$/,
-        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
-      }
-    ]
-  }
+  ]),
+  module: base.module
 };
