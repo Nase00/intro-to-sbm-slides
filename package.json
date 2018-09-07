@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.prod.js --colors",
     "lint": "eslint --ext .js,.jsx .",
     "deploy": "git subtree push --prefix dist origin gh-pages",
     "export": "spectacle-renderer --delay 3000",

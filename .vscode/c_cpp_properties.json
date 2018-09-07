@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Users/sean.owiecki/Library/Arduino15/packages/esp8266/tools/**",
+                "/Users/sean.owiecki/Library/Arduino15/packages/esp8266/hardware/esp8266/2.2.0/**"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

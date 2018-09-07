@@ -1,10 +1,13 @@
 import React, { PureComponent } from "react";
 import CodeSlide from "spectacle-code-slide";
-import { Deck, Heading, ListItem, List, Slide, Text } from "spectacle";
+import { Notes, Deck, Heading, ListItem, List, Slide, Text } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
 
 import Comparison from "./comparison";
+import pwm from "../assets/pwm.png";
 import ledBlinkExample from "../assets/led-blink-example.gif";
+import pullup from "../assets/pullup.png";
+import pulldown from "../assets/pulldown.png";
 import unoPinout from "../assets/uno-pinout.png";
 
 import "normalize.css";
@@ -26,10 +29,14 @@ const theme = createTheme(
 
 /**
  * TODO
- * - Pin types (input, output, PWM, i2c)
- * - Arduino IDE
- * - Serial monitor
+ * - Identify audience
+
+ * - ESP8266
  * - Hardware vs software solutions (pull-up resistors)
+ * - Pros and Cons Arduino vs Raspberry pi
+ * - Shields and Hats
+ * - Remove Johnny-Five?
+ * - Add sensor reading example
  */
 
 class Presentation extends PureComponent {
@@ -40,7 +47,7 @@ class Presentation extends PureComponent {
         transitionDuration={500}
         theme={theme}
       >
-        <Slide transition={["zoom"]} bgColor="primary">
+        <Slide className="intro" transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
             Single-Board Microcontrollers
           </Heading>
@@ -48,6 +55,7 @@ class Presentation extends PureComponent {
             Introduction to the Arduino Platform
           </Text>
         </Slide>
+
         <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="primary">
             Quick comparison
@@ -68,12 +76,21 @@ class Presentation extends PureComponent {
             </List>
           </Comparison>
         </Slide>
+
         <Slide transition={["fade"]} bgColor="secondary">
+          <Notes>
+            <ul>
+              <li>AVR - Pins as they correspond to the ATmega328P chip</li>
+              <li>SPI - Serial Peripheral Interface</li>
+              <li>I²C - Inter-Integrated Circuit </li>
+            </ul>
+          </Notes>
           <Heading size={5} textColor="primary" caps>
             Arduino UNO R3 Pinout
           </Heading>
           <img src={unoPinout} style={{ maxHeight: "600px" }} />
         </Slide>
+
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Digital
@@ -87,6 +104,7 @@ class Presentation extends PureComponent {
             </ListItem>
           </List>
         </Slide>
+
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Analog
@@ -101,6 +119,7 @@ class Presentation extends PureComponent {
             analogWrite() outputs PWM signals!
           </ListItem>
         </Slide>
+
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             PWM
@@ -108,18 +127,110 @@ class Presentation extends PureComponent {
           <Heading size={6} textColor="secondary" caps>
             (Pulse-Width Modulation)
           </Heading>
+          <img className="white" src={pwm} />
+          <Text>
+            <a
+              className="attribution"
+              href="https://en.wikipedia.org/wiki/Pulse-width_modulation#/media/File:PWM,_3-level.svg"
+            >
+              Wikipedia
+            </a>
+          </Text>
           <Text textColor="tertiary">
             A digital signal that can simulate an analog signal
           </Text>
         </Slide>
+
+        <Slide transition={["fade"]} bgColor="secondary">
+          <Heading size={3} textColor="primary" caps>
+            Pull-Up and Pull-Down Resistors
+          </Heading>
+          <img className="white" src={pullup} />
+          <img className="white" src={pulldown} />
+          <br />
+          <a
+            className="attribution"
+            href="https://playground.arduino.cc/CommonTopics/PullUpDownResistor"
+          >
+            https://playground.arduino.cc/CommonTopics/PullUpDownResistor
+          </a>
+          <Text clasName="text">
+            Pulls a pin's voltage up (towards VIN) or down (towards ground) to
+            prevent random floating input values.
+          </Text>
+        </Slide>
+
         <Slide transition={["fade"]} bgColor="secondary">
           <Heading size={5} textColor="primary" caps>
+            Uploading Code
+          </Heading>
+          <ListItem textColor="tertiary">Arduino IDE</ListItem>
+          <ListItem textColor="tertiary">Fritzring App</ListItem>
+          <ListItem textColor="tertiary">
+            Extensions for popular IDEs such as VSCode
+          </ListItem>
+          <Text className="text">
+            Select the correct <span className="cyan">board type</span>,{" "}
+            <span className="magenta">serial port</span>, and{" "}
+            <span className="yellow">upload speed</span>. Most other settings
+            can be left at their default values. Some boards require loading 3rd
+            party configurations into the board manager.
+          </Text>
+        </Slide>
+
+        <CodeSlide
+          transition={["fade"]}
+          className="code-slide"
+          lang="c"
+          code={require("raw-loader!../assets/serial.example")}
+          ranges={[
+            {
+              loc: [0, 9],
+              title: (
+                <div className="code-title">Serial Monitoring (Logging)</div>
+              )
+            },
+            {
+              loc: [1, 2],
+              title: (
+                <div className="code-note">
+                  Instructs firmware to set serial output baud rate to 9600
+                </div>
+              )
+            },
+            {
+              loc: [5, 7],
+              title: <div className="code-note">Only prints strings!</div>
+            },
+            {
+              loc: [0, 9],
+              title: (
+                <div className="code-note">
+                  Arduino IDE > Tools > Serial Monitor Match the monitor's baud
+                  rate to your firmware's rate
+                </div>
+              )
+            }
+          ]}
+        />
+
+        <Slide transition={["fade"]} bgColor="secondary">
+          <Heading size={5} textColor="primary" caps>
+            SPI vs I²C
+          </Heading>
+          <Text>WIP</Text>
+        </Slide>
+
+        <Slide transition={["fade"]} bgColor="secondary">
+          <Heading size={3} textColor="primary" caps>
             LED Blink Wiring
           </Heading>
           <img src={ledBlinkExample} />
         </Slide>
+
         <CodeSlide
           transition={["fade"]}
+          className="code-slide"
           lang="c"
           code={require("raw-loader!../assets/arduino.example")}
           ranges={[
@@ -155,8 +266,10 @@ class Presentation extends PureComponent {
             }
           ]}
         />
+
         <CodeSlide
           transition={["fade"]}
+          className="code-slide"
           lang="javascript"
           code={require("raw-loader!../assets/johnny-five.example")}
           ranges={[
@@ -190,6 +303,7 @@ class Presentation extends PureComponent {
             }
           ]}
         />
+
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={5} textColor="secondary" caps>
             Where to Buy
@@ -224,6 +338,7 @@ class Presentation extends PureComponent {
             </ListItem>
           </List>
         </Slide>
+
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={5} textColor="secondary" caps>
             Resources
@@ -243,6 +358,12 @@ class Presentation extends PureComponent {
             <ListItem>
               <a href="https://learn.adafruit.com/adafruit-guide-excellent-soldering/tools">
                 Adafruit Soldering Guide
+              </a>
+            </ListItem>
+            <ListItem>
+              <a href="https://www.quora.com/How-led-brightness-is-controlled-by-pulse-width-modulation">
+                Quora - How led brightness is controlled by pulse width
+                modulation?
               </a>
             </ListItem>
           </List>
