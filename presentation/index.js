@@ -155,8 +155,12 @@ class Presentation extends PureComponent {
           </a>
           <Text className="text">
             Pulls a pin's voltage up (towards VIN) or down (towards ground) to
-            prevent random floating input values. <br />
-            <br />A pull-up or pull-down resistor is typicall 10k or 20k.
+            prevent random floating input values.
+            <br />
+            <br />
+            The ATMega chip has internal 20k pull-up resistors that can be
+            activated by setting setting <code>pingMode(x, INPUT_PULLUP);</code>
+            .
           </Text>
         </Slide>
 
