@@ -178,49 +178,6 @@ class Presentation extends PureComponent {
           </Text>
         </Slide>
 
-        <CodeSlide
-          transition={["fade"]}
-          className="code-slide"
-          lang="c"
-          code={require("raw-loader!../assets/serial.example")}
-          ranges={[
-            {
-              loc: [0, 9],
-              title: (
-                <div className="code-title">Serial Monitoring (Logging)</div>
-              )
-            },
-            {
-              loc: [1, 2],
-              title: (
-                <div className="code-note">
-                  Instructs firmware to set serial output baud rate to 9600
-                </div>
-              )
-            },
-            {
-              loc: [5, 7],
-              title: <div className="code-note">Only prints strings!</div>
-            },
-            {
-              loc: [0, 9],
-              title: (
-                <div className="code-note">
-                  Arduino IDE > Tools > Serial Monitor Match the monitor's baud
-                  rate to your firmware's rate
-                </div>
-              )
-            }
-          ]}
-        />
-
-        <Slide transition={["fade"]} bgColor="secondary">
-          <Heading size={5} textColor="primary" caps>
-            SPI vs I²C
-          </Heading>
-          <Text>WIP</Text>
-        </Slide>
-
         <Slide transition={["fade"]} bgColor="secondary">
           <Heading size={3} textColor="primary" caps>
             LED Blink Wiring
@@ -270,15 +227,98 @@ class Presentation extends PureComponent {
         <CodeSlide
           transition={["fade"]}
           className="code-slide"
+          lang="c"
+          code={require("raw-loader!../assets/serial.example")}
+          ranges={[
+            {
+              loc: [0, 9],
+              title: (
+                <div className="code-title">Serial Monitoring (Logging)</div>
+              )
+            },
+            {
+              loc: [1, 2],
+              title: (
+                <div className="code-note">
+                  Instructs firmware to set serial output baud rate to 9600
+                </div>
+              )
+            },
+            {
+              loc: [5, 7],
+              title: <div className="code-note">Only prints strings!</div>
+            },
+            {
+              loc: [0, 9],
+              title: (
+                <div className="code-note">
+                  Arduino IDE > Tools > Serial Monitor Match the monitor's baud
+                  rate to your firmware's rate
+                </div>
+              )
+            }
+          ]}
+        />
+
+        <CodeSlide
+          transition={["fade"]}
+          className="code-slide"
+          lang="c"
+          code={require("raw-loader!../assets/advanced.example")}
+          ranges={[
+            {
+              loc: [0, 16],
+              title: <div className="code-title">Advanced Sketch</div>
+            },
+            {
+              loc: [17, 27],
+              title: (
+                <div className="code-note">
+                  Initialize buttons, switch, servo, temp sensor, and serial
+                </div>
+              )
+            },
+            {
+              loc: [29, 35],
+              title: (
+                <div className="code-note">
+                  If switched ON, control servo position from button presses;
+                  else, control from temperature reading
+                </div>
+              )
+            },
+            {
+              loc: [38, 49],
+              title: (
+                <div className="code-note">
+                  Rescale temperature reading to servo motor position, move
+                  servo
+                </div>
+              )
+            },
+            {
+              loc: [50, 65],
+              title: (
+                <div className="code-note">
+                  Read button position, move servo if pressed
+                </div>
+              )
+            }
+          ]}
+        />
+
+        <CodeSlide
+          transition={["fade"]}
+          className="code-slide"
           lang="javascript"
           code={require("raw-loader!../assets/johnny-five.example")}
           ranges={[
             {
-              loc: [0, 9],
+              loc: [0, 10],
               title: <div className="code-title">Johnny-Five Blink Sketch</div>
             },
             {
-              loc: [4, 9],
+              loc: [5, 10],
               title: (
                 <div className="code-note">
                   Once board is ready, run callback (asyncronous)
@@ -286,7 +326,7 @@ class Presentation extends PureComponent {
               )
             },
             {
-              loc: [5, 6],
+              loc: [6, 7],
               title: (
                 <div className="code-note">
                   Create a standard LED component instance
@@ -294,10 +334,18 @@ class Presentation extends PureComponent {
               )
             },
             {
-              loc: [7, 8],
+              loc: [8, 9],
               title: (
                 <div className="code-note">
                   Blink LED in 500ms on-off phase periods
+                </div>
+              )
+            },
+            {
+              loc: [11, 17],
+              title: (
+                <div className="code-note">
+                  Controlling Arduinos with other languanges over serial
                 </div>
               )
             }
