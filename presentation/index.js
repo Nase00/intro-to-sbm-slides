@@ -153,9 +153,10 @@ class Presentation extends PureComponent {
           >
             https://playground.arduino.cc/CommonTopics/PullUpDownResistor
           </a>
-          <Text clasName="text">
+          <Text className="text">
             Pulls a pin's voltage up (towards VIN) or down (towards ground) to
-            prevent random floating input values.
+            prevent random floating input values. <br />
+            <br />A pull-up or pull-down resistor is typicall 10k or 20k.
           </Text>
         </Slide>
 
