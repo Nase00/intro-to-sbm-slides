@@ -130,6 +130,7 @@ class Presentation extends PureComponent {
           <img className="white" src={pwm} />
           <Text>
             <a
+              target="_blank"
               className="attribution"
               href="https://en.wikipedia.org/wiki/Pulse-width_modulation#/media/File:PWM,_3-level.svg"
             >
@@ -149,6 +150,7 @@ class Presentation extends PureComponent {
           <img className="white" src={pulldown} />
           <br />
           <a
+            target="_blank"
             className="attribution"
             href="https://playground.arduino.cc/CommonTopics/PullUpDownResistor"
           >
@@ -358,31 +360,49 @@ class Presentation extends PureComponent {
           </Heading>
           <List>
             <ListItem>
-              <a href="https://www.arrow.com/">Arrow</a>
+              <a target="_blank" href="https://www.arrow.com/">
+                Arrow
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.digikey.com/">Digi-Key</a>
+              <a target="_blank" href="https://www.digikey.com/">
+                Digi-Key
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.adafruit.com/">Adafruit</a>
+              <a target="_blank" href="https://www.adafruit.com/">
+                Adafruit
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.sparkfun.com/">Sparkfun</a>
+              <a target="_blank" href="https://www.sparkfun.com/">
+                Sparkfun
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://shop.pimoroni.com/">Pimoroni (UK)</a>
+              <a target="_blank" href="https://shop.pimoroni.com/">
+                Pimoroni (UK)
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://thepihut.com/">The Pi Hut (UK)</a>
+              <a target="_blank" href="https://thepihut.com/">
+                The Pi Hut (UK)
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://thepihut.com/">Gearbest (Asia)</a>
+              <a target="_blank" href="https://thepihut.com/">
+                Gearbest (Asia)
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.aliexpress.com/">AliExpress (Asia)</a>
+              <a target="_blank" href="https://www.aliexpress.com/">
+                AliExpress (Asia)
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.alibaba.com/">Alibaba (Asia)</a>
+              <a target="_blank" href="https://www.alibaba.com/">
+                Alibaba (Asia)
+              </a>
             </ListItem>
           </List>
         </Slide>
@@ -393,23 +413,33 @@ class Presentation extends PureComponent {
           </Heading>
           <List>
             <ListItem>
-              <a href="https://www.arduino.cc/reference/en/">
+              <a target="_blank" href="https://www.arduino.cc/reference/en/">
                 The Arduino Language documentation
               </a>
             </ListItem>
             <ListItem>
-              <a href="http://fritzing.org/home/">Fritzing Software</a>
+              <a target="_blank" href="http://fritzing.org/home/">
+                Fritzing Software
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://learn.adafruit.com/">Adafruit Tutorials</a>
+              <a target="_blank" href="https://learn.adafruit.com/">
+                Adafruit Tutorials
+              </a>
             </ListItem>
             <ListItem>
-              <a href="https://learn.adafruit.com/adafruit-guide-excellent-soldering/tools">
+              <a
+                target="_blank"
+                href="https://learn.adafruit.com/adafruit-guide-excellent-soldering/tools"
+              >
                 Adafruit Soldering Guide
               </a>
             </ListItem>
             <ListItem>
-              <a href="https://www.quora.com/How-led-brightness-is-controlled-by-pulse-width-modulation">
+              <a
+                target="_blank"
+                href="https://www.quora.com/How-led-brightness-is-controlled-by-pulse-width-modulation"
+              >
                 Quora - How led brightness is controlled by pulse width
                 modulation?
               </a>
