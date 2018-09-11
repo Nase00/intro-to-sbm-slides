@@ -30,13 +30,9 @@ const theme = createTheme(
 /**
  * TODO
  * - Identify audience
-
- * - ESP8266
+ * - ESP8266?
  * - Hardware vs software solutions (pull-up resistors)
- * - Pros and Cons Arduino vs Raspberry pi
- * - Shields and Hats
- * - Remove Johnny-Five?
- * - Add sensor reading example
+ * - Shields and Hats?
  */
 
 class Presentation extends PureComponent {
@@ -147,6 +143,7 @@ class Presentation extends PureComponent {
             Pull-Up and Pull-Down Resistors
           </Heading>
           <img className="white" src={pullup} />
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
           <img className="white" src={pulldown} />
           <br />
           <a
