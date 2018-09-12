@@ -49,14 +49,14 @@ void printTemp() {
 }
 
 void readButtonState() {
-  const int buttonStateBlue = digitalRead(BUTTON_BLUE);
-  const int buttonStateYellow = digitalRead(BUTTON_YELLOW);
+  int btnStateBlue = digitalRead(BUTTON_BLUE);
+  int btnStateYellow = digitalRead(BUTTON_YELLOW);
   Serial.print("Button press: ");
 
-  if (buttonStateBlue == LOW) {
+  if (btnStateBlue == LOW) {
     Serial.println("BLUE");
     myservo.write(0);
-  } else if (buttonStateYellow == LOW) {
+  } else if (btnStateYellow == LOW) {
     Serial.println("YELLOW");
     myservo.write(180);
   } else {

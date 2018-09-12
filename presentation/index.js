@@ -5,6 +5,8 @@ import createTheme from "spectacle/lib/themes/default";
 
 import Comparison from "./comparison";
 import pwm from "../assets/pwm.png";
+import deadboltDemo from "../assets/deadbolt-demo.gif";
+import strangerDemo from "../assets/stranger-demo.gif";
 import ledBlinkExample from "../assets/led-blink-example.gif";
 import pullup from "../assets/pullup.png";
 import pulldown from "../assets/pulldown.png";
@@ -61,16 +63,45 @@ class Presentation extends PureComponent {
               <ListItem>
                 Linux, Android, or Windows 10 operating system
               </ListItem>
+              <ListItem>ARM Processor</ListItem>
               <ListItem>Any language</ListItem>
               <ListItem>5v logic only</ListItem>
               <ListItem>Digital only</ListItem>
             </List>
             <List>
+              <ListItem>
+                <a
+                  href="https://en.wikipedia.org/wiki/AVR_microcontrollers"
+                  target="_blank"
+                  style={{ color: "black" }}
+                >
+                  AVR
+                </a>
+                /ATMega328
+              </ListItem>
               <ListItem>Compiled C++ firmware</ListItem>
               <ListItem>5v and 3.3v variants</ListItem>
-              <ListItem>Digital & Analog (for input only)</ListItem>
+              <ListItem>Analog (for input only) & Digital</ListItem>
             </List>
           </Comparison>
+        </Slide>
+
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={3} textColor="tertiary" caps>
+            What can be built with Arduinos?
+          </Heading>
+          <a href="https://github.com/Nase00/deadbolt-nfc" target="_blank">
+            <img
+              src={deadboltDemo}
+              style={{ margin: "10px", width: "400px" }}
+            />
+          </a>
+          <a href="https://github.com/Nase00/Stranger-Lights" target="_blank">
+            <img
+              src={strangerDemo}
+              style={{ margin: "10px", width: "400px" }}
+            />
+          </a>
         </Slide>
 
         <Slide transition={["fade"]} bgColor="secondary">
@@ -78,7 +109,7 @@ class Presentation extends PureComponent {
             <ul>
               <li>AVR - Pins as they correspond to the ATmega328P chip</li>
               <li>SPI - Serial Peripheral Interface</li>
-              <li>I²C - Inter-Integrated Circuit </li>
+              <li>I²C - Inter-Integrated Circuit</li>
             </ul>
           </Notes>
           <Heading size={5} textColor="primary" caps>
@@ -93,6 +124,10 @@ class Presentation extends PureComponent {
           </Heading>
           <List>
             <ListItem textColor="tertiary">
+              <code>pinMode()</code> can be set to <code>INPUT</code> or{" "}
+              <code>OUTPUT</code>
+            </ListItem>
+            <ListItem textColor="tertiary">
               On state (pin voltage set to HIGH)
             </ListItem>
             <ListItem textColor="tertiary">
@@ -106,24 +141,30 @@ class Presentation extends PureComponent {
             Analog
           </Heading>
           <ListItem textColor="tertiary">
-            Not limited to binary signals (HIGH or LOW) like Digital
+            <code>pinMode()</code> can be set to <code>INPUT</code> or{" "}
+            <code>OUTPUT</code>
           </ListItem>
           <ListItem textColor="tertiary">
-            analogRead() converts analog inputs to digital readings (0 to 1023)
+            Not limited to binary signals (<code>HIGH</code> or <code>LOW</code>
+            ) like digital
           </ListItem>
           <ListItem textColor="tertiary">
-            analogWrite() outputs PWM signals!
+            <code>analogRead()</code> converts analog inputs to digital readings
+            (0 to 1023)
+          </ListItem>
+          <ListItem textColor="tertiary">
+            <code>analogWrite()</code> outputs digital PWM signals!
           </ListItem>
         </Slide>
 
-        <Slide transition={["fade"]} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
+        <Slide transition={["fade"]} bgColor="white">
+          <Heading size={3} textColor="primary" caps>
             PWM
           </Heading>
-          <Heading size={6} textColor="secondary" caps>
+          <Heading size={6} textColor="primary" caps>
             (Pulse-Width Modulation)
           </Heading>
-          <img className="white" src={pwm} />
+          <img className="white" src={pwm} style={{ width: "500px" }} />
           <Text>
             <a
               target="_blank"
@@ -133,12 +174,22 @@ class Presentation extends PureComponent {
               Wikipedia
             </a>
           </Text>
-          <Text textColor="tertiary">
+          <Text textColor="primary">
             A digital signal that can simulate an analog signal
           </Text>
         </Slide>
 
-        <Slide transition={["fade"]} bgColor="secondary">
+        <Slide
+          transition={["fade"]}
+          bgColor="secondary"
+          notes={
+            <span>
+              The ATMega chip has internal 20k pull-up resistors that can be
+              activated by setting setting{" "}
+              <code>pinMode(x, INPUT_PULLUP);</code>
+            </span>
+          }
+        >
           <Heading size={3} textColor="primary" caps>
             Pull-Up and Pull-Down Resistors
           </Heading>
@@ -156,11 +207,6 @@ class Presentation extends PureComponent {
           <Text className="text">
             Pulls a pin's voltage up (towards VIN) or down (towards ground) to
             prevent random floating input values.
-            <br />
-            <br />
-            The ATMega chip has internal 20k pull-up resistors that can be
-            activated by setting setting <code>pingMode(x, INPUT_PULLUP);</code>
-            .
           </Text>
         </Slide>
 
@@ -177,7 +223,7 @@ class Presentation extends PureComponent {
             Select the correct <span className="cyan">board type</span>,{" "}
             <span className="magenta">serial port</span>, and{" "}
             <span className="yellow">upload speed</span>. Most other settings
-            can be left at their default values. Some boards require loading 3rd
+            can remain at their default values. Some boards require loading 3rd
             party configurations into the board manager.
           </Text>
         </Slide>
@@ -283,7 +329,7 @@ class Presentation extends PureComponent {
               )
             },
             {
-              loc: [29, 35],
+              loc: [29, 36],
               title: (
                 <div className="code-note">
                   If switched ON, control servo position from button presses;
@@ -298,6 +344,12 @@ class Presentation extends PureComponent {
                   Rescale temperature reading to servo motor position, move
                   servo
                 </div>
+              )
+            },
+            {
+              loc: [66, 69],
+              title: (
+                <div className="code-note">Casts float into int, rescales</div>
               )
             },
             {

@@ -72,6 +72,10 @@ code,
   font-family: monospace, monospace;
 }
 
+li > code {
+  color: #05a8fa;
+}
+
 .text {
   text-align: left;
 }
