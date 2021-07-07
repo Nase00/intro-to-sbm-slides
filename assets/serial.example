@@ -1,0 +1,8 @@
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.printf("I will print every 1000ms!");
+  delay(1000);
+}
